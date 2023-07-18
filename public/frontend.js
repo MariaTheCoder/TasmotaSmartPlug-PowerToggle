@@ -7,20 +7,32 @@ function fetchPowerState() {
     },
   })
     .then((response) => response.json())
-    .then((data) => data.forEach((device) => createElement(device.POWER)));
+    .then((data) => data.forEach((device) => createElement(device)));
 }
 
 console.log(flexContainer);
 
 fetchPowerState();
 
-function createElement(innerText) {
-  const newElement = document.createElement("button");
-  newElement.innerText = innerText;
+function createElement(device) {
+  // Create div container
+  const divContainer = document.createElement("div");
+  divContainer.classList.add("flex-column");
 
-  innerText === "ON"
-    ? newElement.classList.add("ON")
-    : newElement.classList.add("OFF");
+  // Creatae p elements for the device name
+  const deviceNameContainer = document.createElement("div");
+  deviceNameContainer.innerText = device.DeviceName;
 
-  flexContainer.appendChild(newElement);
+  // Create toggle button
+  const powerToggle = document.createElement("button");
+  powerToggle.innerText = device.POWER;
+
+  device.POWER === "ON"
+    ? powerToggle.classList.add("ON")
+    : powerToggle.classList.add("OFF");
+
+  // append toggle button and p element to the div container
+  divContainer.appendChild(deviceNameContainer);
+  divContainer.appendChild(powerToggle);
+  flexContainer.appendChild(divContainer);
 }
