@@ -20,7 +20,7 @@ function createElement(device) {
   divContainer.classList.add("flex-column");
 
   // Creatae p elements for the device name
-  const deviceNameContainer = document.createElement("div");
+  const deviceNameContainer = document.createElement("p");
   deviceNameContainer.innerText = device.DeviceName;
 
   // Create toggle button
