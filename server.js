@@ -14,15 +14,31 @@ app.listen(port, () => {
 });
 
 async function getPowerState() {
-  try {
-    const promises = serverSettings.devices.map((device) =>
-      fetch(`http://${device}/cm?cmnd=Power`).then((res) => res.json())
-    );
+  const environment = process.env.NODE_ENV || "development";
 
-    const results = await Promise.allSettled(promises);
+  if (environment === "development") {
+    console.log("running in " + environment);
 
-    return results;
-  } catch (err) {
-    console.error(err);
+    try {
+      return { state: "ON" };
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  if (environment === "production") {
+    console.log("running in " + environment);
+
+    try {
+      const promises = serverSettings.devices.map((device) =>
+        fetch(`http://${device}/cm?cmnd=Power`).then((res) => res.json())
+      );
+
+      const results = await Promise.allSettled(promises);
+
+      return results;
+    } catch (err) {
+      console.error(err);
+    }
   }
 }
