@@ -4,7 +4,9 @@ const express = require("express");
 const app = express();
 const port = 5600;
 
-app.get("/", async (req, res) => {
+app.use("/", express.static("public"));
+
+app.get("/api", async (req, res) => {
   const powerState = await getPowerState();
   res.json(powerState);
 });
