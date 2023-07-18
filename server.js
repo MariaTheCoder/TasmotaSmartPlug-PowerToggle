@@ -1,10 +1,13 @@
 const serverSettings = require("./settings.json");
 const express = require("express");
+const cors = require("cors");
 
 const app = express();
 const port = 5600;
 
 app.use("/", express.static("public"));
+// enable all cors requests
+app.use(cors());
 
 app.get("/api", async (req, res) => {
   const powerState = await getPowerState();
