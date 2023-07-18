@@ -6,8 +6,30 @@
   padding: 0;
 }
 
+.flex-column,
 #flex-container {
   display: flex;
+  justify-content: space-around;
+}
+
+#flex-container {
+  margin-top: 2em;
+}
+
+.flex-column {
+  flex-direction: column;
+  text-align: center;
+
+  border: 1px solid black;
+}
+
+.flex-column > * {
+  padding: 0.5em;
+}
+
+p {
+  font-size: 1.5em;
+  font-weight: bold;
 }
 
 button {
