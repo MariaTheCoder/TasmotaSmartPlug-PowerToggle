@@ -22,7 +22,11 @@ async function getPowerState() {
     console.log("running in " + environment);
 
     try {
-      return { state: "ON" };
+      return [
+        { DeviceName: "Smart Plug", POWER: "ON" },
+        { DeviceName: "Smart Plug", POWER: "OFF" },
+        { DeviceName: "Smart Plug", POWER: "OFF" },
+      ];
     } catch (err) {
       console.error(err);
     }
