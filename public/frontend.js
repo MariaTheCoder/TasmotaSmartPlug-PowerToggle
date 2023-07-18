@@ -1,1 +1,3 @@
-console.log("Hello World");
+const flexContainer = document.getElementById("flex-container");
+
+console.log(flexContainer);
